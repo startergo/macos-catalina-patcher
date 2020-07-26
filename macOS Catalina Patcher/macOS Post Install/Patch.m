@@ -107,10 +107,10 @@
     NSMutableDictionary *bootPlist = [[NSMutableDictionary alloc]initWithContentsOfFile:plistPath];
     NSString *kernelFlags = [bootPlist objectForKey:@"Kernel Flags"];
     if ([kernelFlags isEqualToString:@""]) {
-        kernelFlags = @"-no_compat_check";
+        kernelFlags = @"-no_compat_check -v";
     }
     else if ([kernelFlags rangeOfString:@"-no_compat_check"].location == NSNotFound) {
-        kernelFlags = [kernelFlags stringByAppendingString:@" -no_compat_check"];
+        kernelFlags = [kernelFlags stringByAppendingString:@" -no_compat_check -v"];
     }
     [bootPlist setObject:kernelFlags forKey:@"Kernel Flags"];
     [bootPlist writeToFile:plistPath atomically:YES];
